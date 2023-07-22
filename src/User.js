@@ -4,14 +4,17 @@ import AddUser from "./AddUser"
 import { CSSTransition } from "react-transition-group";
 
 class User extends React.Component {
+  
   constructor(props){
     super(props);
     this.state = {
       editForm: false,
+      
     };
   }
-
+  
   user = this.props.user;
+
   render(){
     return(
       <div className='user'>
@@ -23,11 +26,10 @@ class User extends React.Component {
                 }));
               }} className="edit-icon" />
             </div>  
-            <img src={this.user.avatar}/>
+            <img src={this.user.avatar} />
             <h3>{this.props.user.first_name} {this.props.user.last_name}</h3>
             <p>{this.props.user.email}</p>
             
-            {/* <b>{this.user.isHappy ? 'Счастлив:)' : 'Не особо счастлив..'}</b> */}
             <CSSTransition
               in={this.state.editForm}
               timeout={500}
@@ -38,9 +40,8 @@ class User extends React.Component {
                 <div className="backdrop" onClick={() => this.setState({ editForm: false })}></div>
                 <AddUser user={this.props.user} buttonText="Изменить пользователя" onAdd={this.props.onEdit} />
               </div>
-            
             </CSSTransition>
-            
+          
         </div>
     )
   }

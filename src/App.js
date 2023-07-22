@@ -68,8 +68,15 @@ class App extends React.Component{
 
   editUser(user){
     let allUsers = this.state.users
+    let oldUser = allUsers[user.id - 1]
     allUsers[user.id - 1] = user
+    oldUser.first_name = user.first_name ? user.first_name : oldUser.first_name
+    oldUser.last_name = user.last_name ? user.last_name : oldUser.last_name
+    oldUser.email = user.email ? user.email : oldUser.email
+    oldUser.avatar = user.avatar ? user.avatar : oldUser.avatar
+    //oldUser.isHappy = user.isHappy !== undefined ? user.isHappy : oldUser.isHappy
 
+    allUsers[user.id - 1] = oldUser
     this.setState({users: []}, () => {
       this.setState({users: [...allUsers]})
     })
